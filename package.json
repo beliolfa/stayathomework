@@ -1,0 +1,21 @@
+{
+  "name": "anitaarnao3b",
+  "version": "1.0.0",
+  "description": "Deberes de 3B de Anita Arnao",
+  "author": "Javier Martinez",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "date-fns": "^2.11.1",
+    "nuxt": "^2.0.0",
+    "vue-scrollto": "^2.17.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^1.0.0"
+  }
+}
