@@ -23,6 +23,10 @@ import IndexRow from '@/components/IndexRow'
 export default {
   name: 'IndexView',
 
+  head: {
+    title: 'Actividades para 3B. Colegio Anita Arnao'
+  },
+
   components: { IndexRow },
 
   computed: {

@@ -41,6 +41,10 @@
   export default {
     name: 'PageSubject',
 
+    head: {
+      title: 'Actividades para 3B. Colegio Anita Arnao'
+    },
+
     components: { SubjectDay },
 
     computed: {
