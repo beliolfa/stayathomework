@@ -40,8 +40,12 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    'vue-scrollto/nuxt'
   ],
+
+  router: {
+    linkExactActiveClass: 'text-white bg-indigo-900'
+  },
+
   /*
   ** Build configuration
   */

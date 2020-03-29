@@ -1,73 +1,24 @@
 <template>
-<div class="h-screen flex overflow-hidden bg-gray-100" x-data="{ sidebarOpen: false }" @keydown.window.escape="sidebarOpen = false">
+<div class="h-screen flex overflow-hidden bg-gray-100" @keydown.esc="sidebarOpen = false">
   <!-- Off-canvas menu for mobile -->
-  <div x-show="sidebarOpen" class="md:hidden">
-    <div @click="sidebarOpen = false" x-show="sidebarOpen" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-30 transition-opacity ease-linear duration-300">
+  <div v-show="sidebarOpen" class="md:hidden">
+    <div @click="sidebarOpen = false" v-show="sidebarOpen" class="fixed inset-0 z-30 transition-opacity ease-linear duration-300">
       <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
     </div>
     <div class="fixed inset-0 flex z-40">
-      <div x-show="sidebarOpen" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="flex-1 flex flex-col max-w-xs w-full bg-indigo-800 transform ease-in-out duration-300 ">
+      <div v-show="sidebarOpen" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="flex-1 flex flex-col max-w-xs w-full bg-indigo-800 transform ease-in-out duration-300 ">
         <div class="absolute top-0 right-0 -mr-14 p-1">
-          <button x-show="sidebarOpen" @click="sidebarOpen = false" class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600">
+          <button v-show="sidebarOpen" @click="sidebarOpen = false" class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600">
             <svg class="h-6 w-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
         <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
-          <div class="flex-shrink-0 flex items-center px-4">
-            <img class="h-8 w-auto" src="/img/logos/workflow-logo-on-brand.svg" alt="Workflow" />
-          </div>
-          <nav class="mt-5 px-2">
-            <a href="#" class="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-white bg-indigo-900 focus:outline-none focus:bg-indigo-700 transition ease-in-out duration-150">
-              <svg class="mr-4 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6"/>
-              </svg>
-              Agrupado por días
-            </a>
-            <a href="#" class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-indigo-300 hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-              <svg class="mr-4 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-              </svg>
-              Team
-            </a>
-            <a href="#" class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-indigo-300 hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-              <svg class="mr-4 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
-              </svg>
-              Projects
-            </a>
-            <a href="#" class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-indigo-300 hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-              <svg class="mr-4 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-              </svg>
-              Calendar
-            </a>
-            <a href="#" class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-indigo-300 hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-              <svg class="mr-4 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
-              </svg>
-              Documents
-            </a>
-            <a href="#" class="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-indigo-300 hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-              <svg class="mr-4 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-              </svg>
-              Reports
-            </a>
-          </nav>
+          <SidebarHeader />
+          <SidebarMenu @click="sidebarOpen = false" />
         </div>
-        <div class="flex-shrink-0 flex border-t border-indigo-700 p-4">
-          <a href="#" class="flex-shrink-0 group block focus:outline-none">
-            <div class="flex items-center">
-              <div class="ml-3">
-                <p class="text-base leading-6 font-medium text-white">
-                  Tom Cook
-                </p>
-              </div>
-            </div>
-          </a>
-        </div>
+        <SidebarFooter />
       </div>
       <div class="flex-shrink-0 w-14">
         <!-- Force sidebar to shrink to fit close icon -->
@@ -79,55 +30,10 @@
   <div class="hidden md:flex md:flex-shrink-0">
     <div class="flex flex-col w-64 border-r border-gray-200 bg-indigo-800">
       <div class="h-0 flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-        <div class="flex items-center flex-shrink-0 px-4 text-white text-xl">
-          <span class="mr-2">#QuédateEnCasa</span>
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-        </div>
-        <!-- Sidebar component, swap this element with another sidebar if you like -->
-        <nav class="mt-5 flex-1 px-2 bg-indigo-800">
-          <nuxt-link to="/" class="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-white rounded-md bg-indigo-900 focus:outline-none focus:bg-indigo-700 transition ease-in-out duration-150">
-            <svg class="mr-3 h-6 w-6 text-indigo-400 group-focus:text-indigo-300 transition ease-in-out duration-150" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-              <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-            </svg>
-            Agrupado por días
-          </nuxt-link>
-          <nuxt-link
-            v-for="subject in subjects"
-            :key="subject.name" href="#"
-            class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-indigo-300 rounded-md hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
-            :to="`/${subject.slug}`"
-          >
-            <svg
-              class="mr-3 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150"
-              stroke="currentColor"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                :d="subject.svg"
-              />
-            </svg>
-            {{ subject.name }}
-          </nuxt-link>
-        </nav>
+        <SidebarHeader />
+        <SidebarMenu />
       </div>
-      <div class="flex-shrink-0 flex border-t border-indigo-700 p-4">
-        <a href="#" class="flex-shrink-0 group block focus:outline-none">
-          <div class="flex items-center">
-            <div class="ml-3">
-              <p class="text-sm leading-5 font-medium text-white">
-                Clase de 3B
-              </p>
-              <p class="text-xs leading-4 font-medium text-indigo-300 group-hover:text-indigo-100 group-focus:underline transition ease-in-out duration-150">
-                <a href="https://www.murciaeduca.es/cpanitaarnao/sitio/" target="_blank">Colegio Anita Arnao (Mula)</a>
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
+      <SidebarFooter />
     </div>
   </div>
   <div class="flex flex-col w-0 flex-1 overflow-hidden">
@@ -141,24 +47,30 @@
     <main class="flex-1 relative z-0 overflow-y-auto pt-2 pb-6 focus:outline-none md:py-6" tabindex="0" x-data x-init="$el.focus()">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <h1 class="text-2xl font-semibold text-gray-900">Actividades para 3ºB</h1>
+        <ShowPastDaysToggle />
       </div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-        <!-- Replace with your content -->
         <nuxt />
-        <!-- /End replace -->
       </div>
     </main>
   </div>
 </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import SidebarHeader from '@/components/SidebarHeader'
+import SidebarMenu from '@/components/SidebarMenu'
+import SidebarFooter from '@/components/SidebarFooter'
+import ShowPastDaysToggle from '@/components/ShowPastDaysToggle'
 
 export default {
-  computed: {
-    ...mapState(['subjects'])
-  }
+  components: { SidebarHeader, SidebarMenu, SidebarFooter, ShowPastDaysToggle },
+
+  data() {
+    return {
+      sidebarOpen: false
+    }
+  },
 }
 </script>
 <style>
