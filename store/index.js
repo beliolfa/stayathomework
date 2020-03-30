@@ -71,6 +71,26 @@ export const state = () => ({
             { description: 'Escribe estas horas en la libreta: 3:00, 4:30, 5:15, 7:45' },
           ],
         },
+        '2020-03-30': {
+          tasks: [
+            { description: 'Llama a algún compañer@ y hazle preguntas en inglés.' },
+            { description: 'Escribe estas horas en tu libreta, con letra: 12:00, 14:30, 16:15, 13:45, 6:30, 4:00' },
+            { description: 'Ve algún vídeo de Google Classroom. Si los has visto todos, busca una canción en inglés que te guste y busca en Google: LYRICS y el nombre de tu canción. Lee la letra de la canción a ver si entiendes de qué habla.' },
+            { description: 'Traduce en la libreta estas frases a inglés: Yo me llamo Luisa. Yo tengo nueve años. Me gustan las manzanas. Yo tengo dos primos. Hoy es lunes.' },
+          ],
+        },
+        '2020-03-31': {
+          tasks: [
+            { description: 'Contesta en la libreta a este email:  Hello! My name is John. What´s your name? I live in London, and you? I like going to the cinema and playing with my friends. What do you like to do? Bye Bye. John.' },
+            { description: 'Abre el libro por la primera página del tema 6. Elige tres rutinas que más te gusten. Después, coge un folio o una hoja de libreta y dóblala para que te salgan seis cuadraditos. En tres, pondrás las palabras en inglés, y en las otras, harás los dibujos. ¿Para qué hacemos esto? Para que vosotros mismos os creéis el juego de las parejas, donde se le dan la vuelta y tenéis que buscar cuál va con cuál. Si queréis hacer más, estaría genial.' },
+          ],
+        },
+        '2020-04-03': {
+          tasks: [
+            { description: 'Decoración de huevos de pascua. Con folios, cartón o lo que tengáis a mano, habría que hacer de 7 a 10 huevos de pascua, decorados como vosotros queráis. En internet hay muchas ideas.' },
+            { description: 'Escóndelos por la casa. Si quieres, puedes hacer pistas en inglés para que lo busque alguien. También puedes pedirle a algún familiar que los esconda y tú los buscas.' },
+          ],
+        },
       },
       resources: [],
       description: 'Hola, chicos. A continuación os voy a ir poniendo las tareas que vamos a hacer estos días que estaremos en casa. Además de trabajar con el libro, también realizaremos algunas actividades y juegos desde Google Classroom. Si tenéis la oportunidad de llamar a algún compañero, intentad preguntarles cosas en inglés para que así sigamos teniendo un súper nivel para cuando volvamos al cole :).  Os dejo mi correo, por si tenéis alguna duda: gloriamaria.mengual@murciaeduca.es '
@@ -338,6 +358,19 @@ export const state = () => ({
           tasks: [
             { description: 'Páginas 30 y 31. Ejercicios 1 y 2, que sabéis cómo se hacen. Ejercicio 5, donde tendréis que cambiar la palabra que esté mal en cada frase.' },
             { description: 'Repasad las hojas de repaso que os di, porque a la vuelta no tardaremos en hacer el examen.' },
+          ]
+        },
+        '2020-03-31': {
+          tasks: [
+            { description: 'Repasa las hojas de repaso.' },
+            { description: 'Escribe en la libreta 3 ALIMENTOS QUE LLEVEN  FATS, 3 PROTEINS, 3 VITAMINS, CARBOHYDRATES.' },
+            { description: 'Si no has visto los vídeos de Google Classroom, échales un vistazo.' },
+          ]
+        },
+        '2020-04-02': {
+          tasks: [
+            { description: 'Coge un folio o una hoja de libreta, y córtala en 6 trozos. En cada trozo tienes que escribir el nombre y dibujar un órgano del sistema digestivo. Cuando hayas acabado, tendrás los trozos separados unos de otros; entonces, tendrás que ordenarlos. Si tienes a algún familiar cerca, cuéntale qué hace cada órgano. (Si no te acuerdas, puedes mirar el libro)' },
+            { description: 'Coge otro folio, y haz lo mismo pero con las partes del sistema excretor.' },
           ]
         }
       },
