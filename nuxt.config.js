@@ -47,6 +47,27 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: 'AIzaSyDUxIxlXdk8z09xMAlzFdB7GJq6BOzm7Ko',
+          authDomain: 'stayathomework-68a56.firebaseapp.com',
+          databaseURL: 'https://stayathomework-68a56.firebaseio.com',
+          projectId: 'stayathomework-68a56',
+          storageBucket: 'stayathomework-68a56.appspot.com',
+          messagingSenderId: '182090476433',
+          appId: '1:182090476433:web:6ac209ee2a490086ff8830',
+        },
+        services: {
+          auth: {
+            initialize: {
+              onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
+            },
+          }
+        }
+      }
+    ]
   ],
 
   router: {
