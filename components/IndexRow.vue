@@ -64,7 +64,7 @@
       },
 
       isPast() {
-        return isPast(this.isoDate)
+        return isPast(this.isoDate) && !this.isToday
       },
 
       isToday() {

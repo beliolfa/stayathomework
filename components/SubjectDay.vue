@@ -42,7 +42,7 @@
 </template>
 
 <script>
-  import { isPast, parseISO } from 'date-fns'
+  import { isPast, isToday, parseISO } from 'date-fns'
   import { mapState } from 'vuex'
   import FormattedDate from '@/components/FormattedDate'
 
@@ -67,7 +67,8 @@
       ...mapState(['showPastDays']),
 
       isPast() {
-        return isPast(parseISO(this.date))
+        const date = parseISO(this.date)
+        return isPast(date) && !isToday(date)
       },
 
       shouldShow() {
