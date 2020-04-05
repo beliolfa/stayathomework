@@ -14,7 +14,7 @@
       v-for="subject in subjects"
       :key="subject.name" href="#"
       class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-indigo-300 rounded-md hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
-      :to="`/${subject.slug}`"
+      :to="`/${classroom}/${subject.slug}`"
       @click.native="$emit('click', subject)"
     >
       <svg
@@ -42,7 +42,7 @@
     name: 'SidebarMenu',
 
   computed: {
-    ...mapState(['subjects'])
+    ...mapState(['subjects', 'classroom'])
   }
   }
 </script>

@@ -1,5 +1,6 @@
 export const state = () => ({
   user: {},
+  classroom: null,
   showPastDays: false,
   subjects: [
     {
@@ -427,6 +428,9 @@ export const state = () => ({
 export const actions = {
   setShowPastDays({ commit }, value) {
     commit('SET_SHOW_PAST_DAYS', value)
+  },
+  setClassroom({ commit }, value) {
+    commit('SET_CLASSROOM', value)
   }
 }
 
@@ -435,21 +439,22 @@ export const mutations = {
     state.showPastDays = value
   },
 
+  SET_CLASSROOM(state, value) {
+    state.classroom = value
+  },
+
   ON_AUTH_STATE_CHANGED_MUTATION: (state, { authUser, claims }) => {
     if (!authUser) {
       state.user = {}
     } else {
-      const { uid, email, emailVerified, displayName, photoURL } = authUser
+      const { uid, email, displayName } = authUser
 
       state.user = {
         uid,
-        displayName,
+        classroom: displayName,
         email,
-        emailVerified,
-        photoURL: photoURL || null, // results in photoURL being null for server auth
-        // use custom claims to control access (see https://firebase.google.com/docs/auth/admin/custom-claims)
-        isAdmin: claims.custom_claim
       }
+      state.classroom = displayName
     }
   }
 }
