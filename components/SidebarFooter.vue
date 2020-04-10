@@ -25,7 +25,9 @@
     name: 'SidebarFooter',
 
     computed: {
-      ...mapState(['user'])
+      ...mapState({
+        user: state => state.auth.user
+      })
     },
 
     methods: {

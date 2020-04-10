@@ -32,7 +32,9 @@ export default {
   components: { IndexRow },
 
   computed: {
-    ...mapGetters(['days'])
+    ...mapGetters({
+      days: 'classroom/days'
+    })
   }
 }
 </script>
