@@ -8,15 +8,16 @@ export default {
       return commit('SET_USER', {})
     }
 
-    const { uid, email, displayName } = authUser
+    const { uid, email } = authUser
+    const classroom = email.replace('@stayathomework.app','');
 
     commit('SET_USER', {
       uid,
-      classroom: displayName,
+      classroom,
       email,
     })
 
-    commit('SET_CLASSROOM', displayName)
+    commit('SET_CLASSROOM', classroom)
     dispatch('classroom/init', null, { root: true })
   }
 }

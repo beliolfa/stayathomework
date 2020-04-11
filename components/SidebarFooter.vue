@@ -4,7 +4,7 @@
       <div class="flex items-center">
         <div class="ml-3">
           <div class="text-sm leading-5 font-medium text-white">
-            Clase de 3B
+            {{ classroom }}
           </div>
           <div v-if="user.uid" class="text-xs leading-4 font-medium text-indigo-300 group-hover:text-indigo-100 group-focus:underline transition ease-in-out duration-150 cursor-pointer" @click="logout">
            Logout
@@ -26,7 +26,8 @@
 
     computed: {
       ...mapState({
-        user: state => state.auth.user
+        classroom: state => state.auth.classroom,
+        user: state => state.auth.user,
       })
     },
 
