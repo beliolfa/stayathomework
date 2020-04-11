@@ -28,6 +28,7 @@
       ...mapState({
         classroom: state => state.auth.classroom,
         user: state => state.auth.user,
+
       })
     },
 
