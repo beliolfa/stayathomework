@@ -1,4 +1,3 @@
-import { state } from './store'
 require('dotenv').config()
 
 export default {
@@ -16,12 +15,6 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
-  },
-
-  generate: {
-    routes() {
-      return state().subjects.map(s => s.slug)
-    }
   },
   /*
   ** Customize the progress-bar color
