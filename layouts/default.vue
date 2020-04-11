@@ -58,6 +58,7 @@
 </div>
 </template>
 <script>
+// import { mapState, mapActions } from 'vuex'
 import SidebarHeader from '@/components/SidebarHeader'
 import SidebarMenu from '@/components/SidebarMenu'
 import SidebarFooter from '@/components/SidebarFooter'
@@ -71,6 +72,29 @@ export default {
       sidebarOpen: false
     }
   },
+
+  // computed: {
+  //   ...mapState['classroom']
+  // },
+
+  created() {
+    // if (this.classroom) return
+
+    // this.$fireStore.collection('subjects').where('classroom', '==', this.$route.params.classroom).get()
+    // .then(data => {
+    //   if (data.empty) {
+    //     return this.$router.push('/')
+    //   }
+    //   this.setClassroom(this.$route.params.classroom)
+    // })
+    // .catch(err => {
+    //   console.log('Error getting documents', err);
+    // });
+  },
+
+  // methods: {
+  //   ...mapActions(['setClassroom'])
+  // }
 }
 </script>
 <style>

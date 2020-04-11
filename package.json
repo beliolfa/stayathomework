@@ -11,7 +11,12 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@64robots/r64components": "^0.1.27",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/firebase": "^5.0.3",
+    "core-js": "2.6.10",
     "date-fns": "^2.11.1",
+    "firebase": "^7.13.1",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {

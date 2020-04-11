@@ -51,12 +51,16 @@
     },
 
     computed: {
-      ...mapState(['showPastDays']),
+      ...mapState({
+        showPastDays: state => state.classroom.showPastDays
+      }),
 
-      ...mapGetters(['subjectsByDay']),
+      ...mapGetters({
+        subjectsByDate: 'classroom/subjectsByDate'
+      }),
 
       subjects() {
-        return this.subjectsByDay(this.day)
+        return this.subjectsByDate(this.day)
       },
 
       isoDate() {

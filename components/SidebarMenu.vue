@@ -1,7 +1,7 @@
 <template>
   <nav class="mt-5 flex-1 px-2 bg-indigo-800">
     <nuxt-link
-      to="/"
+      :to="`/${classroom}/`"
       class="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-indigo-300 rounded-md focus:outline-none focus:bg-indigo-700 transition ease-in-out duration-150"
       @click.native="$emit('click', {})"
     >
@@ -12,9 +12,9 @@
     </nuxt-link>
     <nuxt-link
       v-for="subject in subjects"
-      :key="subject.name" href="#"
+      :key="subject.name"
       class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-indigo-300 rounded-md hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150"
-      :to="`/${subject.slug}`"
+      :to="`/${classroom}/${subject.slug}`"
       @click.native="$emit('click', subject)"
     >
       <svg
@@ -36,13 +36,16 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+import { mapState } from 'vuex'
 
-  export default {
-    name: 'SidebarMenu',
+export default {
+  name: 'SidebarMenu',
 
   computed: {
-    ...mapState(['subjects'])
+    ...mapState({
+      subjects: state => state.classroom.subjects,
+      classroom: state => state.auth.classroom,
+    })
   }
-  }
+}
 </script>

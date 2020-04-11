@@ -3,21 +3,21 @@
     <div class="border-b border-gray-200 px-4 py-5 sm:px-6 font-bold text-blue-500">
       <a :id="`date-${date}`"><FormattedDate :date="date" /></a>
     </div>
-    <ol v-if="day.tasks.length">
-      <li v-for="(task, taskIndex) in day.tasks" :key="`task-${taskIndex}`" class="px-4 py-5 sm:p-6">
-        <span class="font-bold mr-2">{{ taskIndex + 1 }}.</span>
+    <ol v-if="tasks.length">
+      <li v-for="(task, index) in tasks" :key="`task-${index}`" class="px-4 py-5 sm:p-6">
+        <span class="font-bold mr-2">{{ index + 1 }}.</span>
         <span>{{ task.description }}</span>
         <img v-if="task.image" :src="task.image">
       </li>
     </ol>
-    <div v-if="day.resources" class="border-t border-gray-200 px-4 py-4 sm:px-6">
+    <div v-if="resources.length" class="border-t border-gray-200 px-4 py-4 sm:px-6">
       <dt class="text-sm leading-5 font-medium text-gray-500 mb-2">
         Recursos Relacionados
       </dt>
       <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
         <ul class="border border-gray-200 rounded-md">
           <li
-            v-for="(resource, index) in day.resources"
+            v-for="(resource, index) in resources"
             :key="index"
             class="border-t border-gray-200 pl-3 pr-4 py-3 flex flex-col sm:flex-row items-center justify-between text-sm leading-5"
           >
@@ -26,7 +26,7 @@
                 <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd"/>
               </svg>
               <span class="ml-2 flex-1 w-0 sm:truncate">
-                {{ resource.title }}
+                {{ resource.description }}
               </span>
             </div>
             <div class="mt-2 ml-0 sm:mt-0 sm:ml-4 flex-shrink-0">
@@ -43,7 +43,7 @@
 
 <script>
   import { isPast, isToday, parseISO } from 'date-fns'
-  import { mapState } from 'vuex'
+  import { mapState, mapGetters } from 'vuex'
   import FormattedDate from '@/components/FormattedDate'
 
   export default {
@@ -52,9 +52,9 @@
     components: { FormattedDate },
 
     props: {
-      day: {
-        type: Object,
-        required: true,
+      subject: {
+        type: String,
+        required: true
       },
 
       date: {
@@ -64,7 +64,22 @@
     },
 
     computed: {
-      ...mapState(['showPastDays']),
+      ...mapState({
+        showPastDays: state => state.classroom.showPastDays
+      }),
+
+      ...mapGetters({
+        tasksBySubjectAndDate: 'classroom/tasksBySubjectAndDate',
+        resourcesBySubjectAndDate: 'classroom/resourcesBySubjectAndDate',
+      }),
+
+      tasks() {
+        return this.tasksBySubjectAndDate(this.subject, this.date)
+      },
+
+      resources() {
+        return this.resourcesBySubjectAndDate(this.subject, this.date)
+      },
 
       isPast() {
         const date = parseISO(this.date)

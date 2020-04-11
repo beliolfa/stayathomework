@@ -38,10 +38,10 @@
     computed: {
       value: {
         get() {
-          return this.$store.state.showPastDays
+          return this.$store.state.classroom.showPastDays
         },
         set(value) {
-          this.$store.dispatch('setShowPastDays', value)
+          this.$store.dispatch('classroom/setShowPastDays', value)
         }
       }
     }

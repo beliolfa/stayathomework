@@ -6,9 +6,12 @@
           <div class="text-sm leading-5 font-medium text-white">
             Clase de 3B
           </div>
-          <div class="text-xs leading-4 font-medium text-indigo-300 group-hover:text-indigo-100 group-focus:underline transition ease-in-out duration-150">
-            <a href="https://www.murciaeduca.es/cpanitaarnao/sitio/" target="_blank">Colegio Anita Arnao (Mula)</a>
+          <div v-if="user.uid" class="text-xs leading-4 font-medium text-indigo-300 group-hover:text-indigo-100 group-focus:underline transition ease-in-out duration-150 cursor-pointer" @click="logout">
+           Logout
           </div>
+          <nuxt-link to="/login" v-else class="text-xs leading-4 font-medium text-indigo-300 group-hover:text-indigo-100 group-focus:underline transition ease-in-out duration-150 cursor-pointer" @click="logout">
+           Login
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -16,7 +19,22 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+
   export default {
-    name: 'SidebarFooter'
+    name: 'SidebarFooter',
+
+    computed: {
+      ...mapState({
+        user: state => state.auth.user
+      })
+    },
+
+    methods: {
+      async logout() {
+        await this.$fireAuth.signOut()
+        this.$router.push('/')
+      }
+    }
   }
 </script>
