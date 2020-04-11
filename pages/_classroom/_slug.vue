@@ -43,10 +43,6 @@
 
     middleware: 'classroomExists',
 
-    head: {
-      title: 'Actividades para 3B. Colegio Anita Arnao'
-    },
-
     components: { SubjectDay },
 
     computed: {
