@@ -1,4 +1,5 @@
 require('dotenv').config()
+import { I18N } from './config/i18n'
 
 export default {
   mode: 'spa',
@@ -66,7 +67,8 @@ export default {
           firestore: true
         }
       }
-    ]
+    ],
+    ['nuxt-i18n', I18N]
   ],
 
   /*

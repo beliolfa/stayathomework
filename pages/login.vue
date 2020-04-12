@@ -6,24 +6,24 @@
       </ErrorAlert>
       <div>
         <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-          Login
+          {{ $t('login.login') }}
         </h2>
       </div>
       <form class="mt-8" @submit.prevent="login">
         <input type="hidden" name="remember" value="true" />
         <div class="rounded-md shadow-sm">
           <div>
-            <input v-model="classroom" aria-label="Nombre de la clase" name="classroom" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" placeholder="Nombre de la clase (sin espacios)" />
+            <input v-model="classroom" aria-label="Nombre de la clase" name="classroom" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" :placeholder="$t('login.className')" />
           </div>
           <div class="-mt-px">
-            <input v-model="password" aria-label="Password" name="password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" placeholder="Contraseña" />
+            <input v-model="password" aria-label="Password" name="password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" :placeholder="$t('login.password')" />
           </div>
         </div>
 
         <div class="mt-6 flex items-center justify-between">
           <div class="text-sm leading-5">
             <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
-              ¿Olvidaste tu contraseña?
+              {{ $t('login.forget') }}
             </a>
           </div>
         </div>
@@ -40,7 +40,7 @@
                 <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
               </svg>
             </span>
-            Entrar
+            {{ $t('login.enter') }}
           </button>
         </div>
       </form>
