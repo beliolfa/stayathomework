@@ -5,6 +5,7 @@
       <ErrorAlert v-if="error" @close="error = false">
         {{ error }}
       </ErrorAlert>
+
       <div>
         <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
           Regístrate para crear tu clase virtual
