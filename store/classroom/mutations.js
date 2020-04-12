@@ -3,6 +3,14 @@ export default {
     state.subjects = subjects
   },
 
+  SET_SUBJECT(state, subject) {
+    const index = state.subjects.findIndex(s => s.id === subject.id)
+    if (index > -1) {
+      return state.subjects.splice(index, 1, subject)
+    }
+    state.subjects.push(subject)
+  },
+
   SET_TASKS(state, tasks) {
     state.tasks = tasks
   },

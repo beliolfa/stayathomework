@@ -1,9 +1,15 @@
 <template>
 <div>
-  <modal name="subject-create-modal" height="auto">
-    <SubjectForm />
+  <modal name="subject-modal" height="auto">
+    <SubjectForm :subject="subject" />
   </modal>
-  <AdminSectionHeader @click="$modal.show('subject-create-modal')">Crear Asignatura</AdminSectionHeader>
+  <DangerConfirm
+    title="Eliminar Asignatura"
+    text="¿Estás seguro que quieres eliminar esta asignatura? Todas las tareas y recursos asociados a esta asignatura quedarán inaccesibles. Esta acción no se puede deshacer."
+    :open="showConfirm"
+    @cancel="showConfirm = false"
+  />
+  <AdminSectionHeader @click="createSubject">Crear Asignatura</AdminSectionHeader>
   <div class="flex flex-col">
     <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
       <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
@@ -50,7 +56,12 @@
                 {{ subject.description }}
               </td>
               <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline">Editar</a>
+                <a
+                  href="#"
+                  class="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline"
+                  @click="editSubject(subject.slug)"
+                >Editar</a>
+                <div @click="showConfirm = true">Delete</div>
               </td>
             </tr>
           </tbody>
@@ -64,6 +75,7 @@
 <script>
   import { mapState } from 'vuex'
   import AdminSectionHeader from '@/components/AdminSectionHeader'
+  import DangerConfirm from '@/components/DangerConfirm'
   import SubjectForm from '@/components/admin/SubjectForm'
 
   export default {
@@ -71,12 +83,31 @@
 
     middleware: 'authenticated',
 
-    components: { AdminSectionHeader, SubjectForm },
+    components: { AdminSectionHeader, SubjectForm, DangerConfirm },
+
+    data() {
+      return {
+        subject: null,
+        showConfirm: false
+      }
+    },
 
     computed: {
       ...mapState({
         subjects: state => state.classroom.subjects
       })
     },
+
+    methods: {
+      createSubject() {
+        this.subject = null
+        this.$modal.show('subject-modal')
+      },
+
+      editSubject(slug) {
+        this.subject = this.subjects.find(subject => subject.slug === slug)
+        this.$modal.show('subject-modal')
+      }
+    }
   }
 </script>
