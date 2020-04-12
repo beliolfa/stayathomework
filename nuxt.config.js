@@ -24,12 +24,14 @@ export default {
   ** Global CSS
   */
   css: [
+    'vue-js-modal/dist/styles.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/r64components'
+    '~plugins/r64components',
+    '~plugins/vue-js-modal',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -66,10 +68,6 @@ export default {
       }
     ]
   ],
-
-  router: {
-    linkExactActiveClass: 'text-white bg-indigo-900'
-  },
 
   /*
   ** Build configuration

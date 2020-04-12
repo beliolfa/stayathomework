@@ -6,8 +6,17 @@
           <div class="text-sm leading-5 font-medium text-white">
             {{ classroom }}
           </div>
-          <div v-if="user.uid" class="text-xs leading-4 font-medium text-indigo-300 group-hover:text-indigo-100 group-focus:underline transition ease-in-out duration-150 cursor-pointer" @click="logout">
-           Logout
+          <div v-if="user.uid">
+            <div
+              class="text-xs leading-4 font-medium text-indigo-300 group-hover:text-indigo-100 group-focus:underline transition ease-in-out duration-150 cursor-pointer"
+              @click="logout"
+            >
+            Logout
+            </div>
+            <nuxt-link
+              to="/admin/"
+              class="text-gray-500 cursor-pointer"
+            >Admin</nuxt-link>
           </div>
           <nuxt-link to="/login" v-else class="text-xs leading-4 font-medium text-indigo-300 group-hover:text-indigo-100 group-focus:underline transition ease-in-out duration-150 cursor-pointer" @click="logout">
            Login

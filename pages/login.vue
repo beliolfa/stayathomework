@@ -56,7 +56,7 @@
 
     layout: 'guest',
 
-    middleware: 'authenticated',
+    middleware: 'guest',
 
     components: { ErrorAlert },
 

@@ -12,7 +12,7 @@ export default {
   getSubjects({ commit, rootState }) {
     return this.$fireStore.collection('subjects').where('classroom', '==', rootState.auth.classroom).get()
     .then(({ docs }) => {
-      commit('SET_SUBJECTS', docs.map(doc => doc.data()))
+      commit('SET_SUBJECTS', docs.map(doc => ({ id: doc.id, ...doc.data() })))
     })
     .catch(error => {
       console.log('Error getting subjects', error);
@@ -22,7 +22,7 @@ export default {
   getTasks({ commit, rootState }) {
     return this.$fireStore.collection('tasks').where('classroom', '==', rootState.auth.classroom).get()
     .then(({ docs }) => {
-      commit('SET_TASKS', docs.map(doc => doc.data()))
+      commit('SET_TASKS', docs.map(doc => ({ id: doc.id, ...doc.data() })))
     })
     .catch(error => {
       console.log('Error getting tasks', error);
@@ -32,7 +32,7 @@ export default {
   getResources({ commit, rootState }) {
     return this.$fireStore.collection('resources').where('classroom', '==', rootState.auth.classroom).get()
     .then(({ docs }) => {
-      commit('SET_RESOURCES', docs.map(doc => doc.data()))
+      commit('SET_RESOURCES', docs.map(doc => ({ id: doc.id, ...doc.data() })))
     })
     .catch(error => {
       console.log('Error getting resources', error);

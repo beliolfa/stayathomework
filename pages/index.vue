@@ -63,7 +63,7 @@
 
     layout: 'guest',
 
-    middleware: 'authenticated',
+    middleware: 'guest',
 
     components: { ErrorAlert },
 
@@ -85,10 +85,14 @@
     methods: {
       signup() {
         this.error = false
+        if (this.classroom === 'admin') {
+          this.error = 'Invalid classroom name'
+          return
+        }
         this.busy = true
         this.$fireAuth.createUserWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          this.$router.push(`/${this.classroom}`)
+          this.$router.replace(`/${this.classroom}`)
           this.busy = false
         })
         .catch(error => {
