@@ -2,8 +2,24 @@
 
 > Stay at Homework
 
-## Build Setup
+## Firebase Setup
+- Sign In into Firebase
+- Enable email/password Sign Up method
+- Enable database
+- Add security rules
 
+```js
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read;
+      allow write: if request.auth.token.email == request.resource.data.classroom + '@stayathomework.app';
+    }
+  }
+}
+```
+
+## Build Setup
 
 ```bash
 # install dependencies
