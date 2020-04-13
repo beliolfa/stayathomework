@@ -14,7 +14,8 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /{document=**} {
       allow read;
-      allow write: if request.auth.token.email == request.resource.data.classroom + '@stayathomework.app';
+      allow delete: if request.auth.token.email == resource.data.classroom + '@stayathomework.app';
+      allow create, update: if request.auth.token.email == request.resource.data.classroom + '@stayathomework.app';
     }
   }
 }

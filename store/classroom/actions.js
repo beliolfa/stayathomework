@@ -29,6 +29,11 @@ export default {
     commit('SET_SUBJECT', { id, ...data })
   },
 
+  async deleteSubject({ commit }, id) {
+    await this.$fireStore.collection('subjects').doc(id).delete()
+    commit('DELETE_SUBJECT', id)
+  },
+
   getTasks({ commit, rootState }) {
     return this.$fireStore.collection('tasks').where('classroom', '==', rootState.auth.classroom).get()
     .then(({ docs }) => {

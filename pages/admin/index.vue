@@ -7,6 +7,7 @@
     title="Eliminar Asignatura"
     text="¿Estás seguro que quieres eliminar esta asignatura? Todas las tareas y recursos asociados a esta asignatura quedarán inaccesibles. Esta acción no se puede deshacer."
     :open="showConfirm"
+    @confirm="removeSubject"
     @cancel="showConfirm = false"
   />
   <AdminSectionHeader @click="createSubject">Crear Asignatura</AdminSectionHeader>
@@ -58,10 +59,14 @@
               <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
                 <a
                   href="#"
-                  class="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline"
+                  class="text-indigo-600 px-2 hover:text-indigo-900 focus:outline-none focus:underline"
                   @click="editSubject(subject.slug)"
                 >Editar</a>
-                <div @click="showConfirm = true">Delete</div>
+                <a
+                  href="#"
+                  class="text-red-600 px-2 hover:text-red-900 focus:outline-none focus:underline"
+                  @click="openDeleteModal(subject.slug)"
+                >Delete</a>
               </td>
             </tr>
           </tbody>
@@ -73,7 +78,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import { mapState, mapActions } from 'vuex'
   import AdminSectionHeader from '@/components/AdminSectionHeader'
   import DangerConfirm from '@/components/DangerConfirm'
   import SubjectForm from '@/components/admin/SubjectForm'
@@ -99,11 +104,22 @@
     },
 
     methods: {
+      ...mapActions({
+        deleteSubject: 'classroom/deleteSubject'
+      }),
+      openDeleteModal(slug) {
+        this.subject = this.subjects.find(subject => subject.slug === slug)
+        this.showConfirm = true
+      },
+      removeSubject() {
+        this.deleteSubject(this.subject.id)
+        this.showConfirm = false
+      },
+
       createSubject() {
         this.subject = null
         this.$modal.show('subject-modal')
       },
-
       editSubject(slug) {
         this.subject = this.subjects.find(subject => subject.slug === slug)
         this.$modal.show('subject-modal')
