@@ -74,7 +74,7 @@
       }),
 
       tasks() {
-        return this.tasksBySubjectAndDate(this.subject, this.date)
+        return this.tasksBySubjectAndDate(this.subject, this.date).slice().sort((a, b) => a.order - b.order)
       },
 
       resources() {
