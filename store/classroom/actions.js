@@ -52,7 +52,17 @@ export default {
     .catch(error => {
       console.log('Error getting resources', error);
     });
-  }
+  },
+
+  async setTask({ commit, rootState }, formData) {
+    const { classroom } = rootState.auth
+    const slug = formData.slug || slugify(formData.name)
+    const data = { ...formData, classroom, slug }
+    const id = `${classroom}-${slug}`
+
+    await this.$fireStore.collection('subjects').doc(formData.subject).collection('tasks').add(data)
+    commit('SET_SUBJECT', { id, ...data })
+  },
 }
 
 function slugify(text) {
