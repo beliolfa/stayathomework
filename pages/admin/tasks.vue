@@ -9,7 +9,7 @@
 </template>
 <script>
 import AdminSectionHeader from '@/components/AdminSectionHeader'
-import TaskForm from '@/components/Admin/TaskForm'
+import TaskForm from '@/components/admin/TaskForm'
 
 export default {
   name: 'AdminTasks',
