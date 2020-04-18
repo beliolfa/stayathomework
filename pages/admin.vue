@@ -6,13 +6,13 @@
 </template>
 
 <script>
-  import AdminHeader from '@/components/AdminHeader'
+import AdminHeader from '@/components/AdminHeader'
 
-  export default {
-    name: 'AdminIndex',
+export default {
+  name: 'AdminIndex',
 
-    middleware: 'authenticated',
+  middleware: 'authenticated',
 
-    components: { AdminHeader }
-  }
+  components: { AdminHeader },
+}
 </script>

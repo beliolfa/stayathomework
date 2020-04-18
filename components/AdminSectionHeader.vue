@@ -1,7 +1,7 @@
 <template>
   <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
     <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
-      <div class="ml-4 mt-2"></div>
+      <div class="ml-4 mt-2" />
       <div class="ml-4 mt-2 flex-shrink-0">
         <span class="inline-flex rounded-md shadow-sm">
           <button
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'AdminSectionHeader'
-  }
+export default {
+  name: 'AdminSectionHeader',
+}
 </script>

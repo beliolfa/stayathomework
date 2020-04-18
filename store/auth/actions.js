@@ -9,7 +9,7 @@ export default {
     }
 
     const { uid, email } = authUser
-    const classroom = email.replace('@stayathomework.app','');
+    const classroom = email.replace('@stayathomework.app', '')
 
     commit('SET_USER', {
       uid,
@@ -19,5 +19,5 @@ export default {
 
     commit('SET_CLASSROOM', classroom)
     dispatch('classroom/init', null, { root: true })
-  }
+  },
 }

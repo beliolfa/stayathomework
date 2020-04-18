@@ -11,15 +11,17 @@
               class="text-xs leading-4 font-medium text-indigo-300 group-hover:text-indigo-100 group-focus:underline transition ease-in-out duration-150 cursor-pointer"
               @click="logout"
             >
-            Logout
+              Logout
             </div>
-            <nuxt-link
-              to="/admin/"
-              class="text-gray-500 cursor-pointer"
-            >Admin</nuxt-link>
+            <nuxt-link to="/admin/" class="text-gray-500 cursor-pointer">Admin</nuxt-link>
           </div>
-          <nuxt-link to="/login" v-else class="text-xs leading-4 font-medium text-indigo-300 group-hover:text-indigo-100 group-focus:underline transition ease-in-out duration-150 cursor-pointer" @click="logout">
-           Login
+          <nuxt-link
+            v-else
+            to="/login"
+            class="text-xs leading-4 font-medium text-indigo-300 group-hover:text-indigo-100 group-focus:underline transition ease-in-out duration-150 cursor-pointer"
+            @click="logout"
+          >
+            Login
           </nuxt-link>
         </div>
       </div>
@@ -28,23 +30,23 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+import { mapState } from 'vuex'
 
-  export default {
-    name: 'SidebarFooter',
+export default {
+  name: 'SidebarFooter',
 
-    computed: {
-      ...mapState({
-        classroom: state => state.auth.classroom,
-        user: state => state.auth.user,
-      })
+  computed: {
+    ...mapState({
+      classroom: state => state.auth.classroom,
+      user: state => state.auth.user,
+    }),
+  },
+
+  methods: {
+    async logout() {
+      await this.$fireAuth.signOut()
+      this.$router.push('/')
     },
-
-    methods: {
-      async logout() {
-        await this.$fireAuth.signOut()
-        this.$router.push('/')
-      }
-    }
-  }
+  },
+}
 </script>

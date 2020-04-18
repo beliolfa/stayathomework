@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'AdminTasks'
-  }
+export default {
+  name: 'AdminTasks',
+}
 </script>
