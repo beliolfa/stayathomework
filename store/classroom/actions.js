@@ -19,6 +19,16 @@ export default {
     });
   },
 
+  getSubjects({ commit, rootState }) {
+    return this.$fireStore.collection('subjects').where('classroom', '==', rootState.auth.classroom).get()
+    .then(({ docs }) => {
+      commit('SET_SUBJECTS', docs.map(doc => ({ id: doc.id, ...doc.data() })))
+    })
+    .catch(error => {
+      console.log('Error getting subjects', error);
+    });
+  },
+
   async setSubject({ commit, rootState }, formData) {
     const { classroom } = rootState.auth
     const slug = formData.slug || slugify(formData.name)
@@ -58,10 +68,10 @@ export default {
     const { classroom } = rootState.auth
     const slug = formData.slug || slugify(formData.name)
     const data = { ...formData, classroom, slug }
-    const id = `${classroom}-${slug}`
+    const id = `${formData.subject}-${slug}`
 
-    await this.$fireStore.collection('subjects').doc(formData.subject).collection('tasks').add(data)
-    commit('SET_SUBJECT', { id, ...data })
+    await this.$fireStore.collection('tasks').doc(id).set(data)
+    commit('SET_TASK', { id, ...data })
   },
 }
 

@@ -10,7 +10,7 @@ export default {
     }
     state.subjects.push(subject)
   },
-  
+
   DELETE_SUBJECT(state, id) {
     state.subjects = state.subjects.filter(subject => subject.id !== id)
   },
@@ -26,4 +26,14 @@ export default {
   SET_SHOW_PAST_DAYS(state, value) {
     state.showPastDays = value
   },
+
+  SET_TASK(state, task) {
+    const index = state.tasks.findIndex(t => t.id === task.id)
+
+    if (index > -1) {
+      return state.tasks.splice(index, 1, task)
+    }
+
+    return state.tasks.push(task)
+  }
 }
