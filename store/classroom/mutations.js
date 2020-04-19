@@ -35,5 +35,9 @@ export default {
     }
 
     return state.tasks.push(task)
+  },
+
+  DELETE_TASK(state, id) {
+    state.tasks = state.tasks.filter(task => task.id !== id)
   }
 }

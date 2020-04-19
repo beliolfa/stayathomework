@@ -73,6 +73,11 @@ export default {
     await this.$fireStore.collection('tasks').doc(id).set(data)
     commit('SET_TASK', { id, ...data })
   },
+
+  async deleteTask({ commit }, id) {
+    await this.$fireStore.collection('tasks').doc(id).delete()
+    commit('DELETE_TASK', id)
+  },
 }
 
 function slugify(text) {
