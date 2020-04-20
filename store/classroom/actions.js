@@ -66,12 +66,17 @@ export default {
 
   async setTask({ commit, rootState }, formData) {
     const { classroom } = rootState.auth
-    const slug = formData.slug || slugify(formData.name)
+    const slug = slugify(formData.name)
     const data = { ...formData, classroom, slug }
-    const id = `${formData.subject}-${slug}`
 
-    await this.$fireStore.collection('tasks').doc(id).set(data)
-    commit('SET_TASK', { id, ...data })
+    if (formData.id) {
+      await this.$fireStore.collection('tasks').doc(formData.id).set(data)
+    } else {
+      await this.$fireStore.collection('tasks').add(data)
+    }
+
+    commit('SET_TASK', data)
+
   },
 
   async deleteTask({ commit }, id) {
