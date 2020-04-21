@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'GuestLayout'
-  }
+export default {
+  name: 'GuestLayout',
+}
 </script>

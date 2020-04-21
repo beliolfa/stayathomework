@@ -1,0 +1,32 @@
+{
+  // ===
+  // Event Triggers
+  // ===
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "vue",
+    "vue-html",
+    "html"
+  ],
+  "eslint.alwaysShowStatus": true,
+  "vetur.format.enable": false,
+  "prettier.disableLanguages": [],
+  "javascript.format.enable": false,
+  "vetur.format.defaultFormatter.html": "none",
+  // ===
+  // Spacing
+  // ===
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.trimAutoWhitespace": true,
+  "files.trimTrailingWhitespace": true,
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true
+}

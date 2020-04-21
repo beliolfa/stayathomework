@@ -22,15 +22,27 @@
             class="border-t border-gray-200 pl-3 pr-4 py-3 flex flex-col sm:flex-row items-center justify-between text-sm leading-5"
           >
             <div class="w-full sm:w-0 flex-1 flex items-center">
-              <svg class="flex-shrink-0 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd"/>
+              <svg
+                class="flex-shrink-0 h-5 w-5 text-gray-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
+                  clip-rule="evenodd"
+                />
               </svg>
               <span class="ml-2 flex-1 w-0 sm:truncate">
                 {{ resource.description }}
               </span>
             </div>
             <div class="mt-2 ml-0 sm:mt-0 sm:ml-4 flex-shrink-0">
-              <a :href="resource.url" target="_blank" class="font-medium text-indigo-600 hover:text-indigo-500 transition duration-150 ease-in-out">
+              <a
+                :href="resource.url"
+                target="_blank"
+                class="font-medium text-indigo-600 hover:text-indigo-500 transition duration-150 ease-in-out"
+              >
                 Descarga
               </a>
             </div>
@@ -42,56 +54,58 @@
 </template>
 
 <script>
-  import { isPast, isToday, parseISO } from 'date-fns'
-  import { mapState, mapGetters } from 'vuex'
-  import FormattedDate from '@/components/FormattedDate'
+import { isPast, isToday, parseISO } from 'date-fns'
+import { mapState, mapGetters } from 'vuex'
+import FormattedDate from '@/components/FormattedDate'
 
-  export default {
-    name: 'SubjectDay',
+export default {
+  name: 'SubjectDay',
 
-    components: { FormattedDate },
+  components: { FormattedDate },
 
-    props: {
-      subject: {
-        type: String,
-        required: true
-      },
-
-      date: {
-        type: String,
-        required: true
-      }
+  props: {
+    subject: {
+      type: String,
+      required: true,
     },
 
-    computed: {
-      ...mapState({
-        showPastDays: state => state.classroom.showPastDays
-      }),
-
-      ...mapGetters({
-        tasksBySubjectAndDate: 'classroom/tasksBySubjectAndDate',
-        resourcesBySubjectAndDate: 'classroom/resourcesBySubjectAndDate',
-      }),
-
-      tasks() {
-        return this.tasksBySubjectAndDate(this.subject, this.date).slice().sort((a, b) => a.order - b.order)
-      },
-
-      resources() {
-        return this.resourcesBySubjectAndDate(this.subject, this.date)
-      },
-
-      isPast() {
-        const date = parseISO(this.date)
-        return isPast(date) && !isToday(date)
-      },
-
-      shouldShow() {
-        if (this.showPastDays) {
-          return true
-        }
-        return !this.isPast
-      }
+    date: {
+      type: String,
+      required: true,
     },
-  }
+  },
+
+  computed: {
+    ...mapState({
+      showPastDays: state => state.classroom.showPastDays,
+    }),
+
+    ...mapGetters({
+      tasksBySubjectAndDate: 'classroom/tasksBySubjectAndDate',
+      resourcesBySubjectAndDate: 'classroom/resourcesBySubjectAndDate',
+    }),
+
+    tasks() {
+      return this.tasksBySubjectAndDate(this.subject, this.date)
+        .slice()
+        .sort((a, b) => a.order - b.order)
+    },
+
+    resources() {
+      return this.resourcesBySubjectAndDate(this.subject, this.date)
+    },
+
+    isPast() {
+      const date = parseISO(this.date)
+      return isPast(date) && !isToday(date)
+    },
+
+    shouldShow() {
+      if (this.showPastDays) {
+        return true
+      }
+      return !this.isPast
+    },
+  },
+}
 </script>

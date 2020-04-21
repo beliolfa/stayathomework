@@ -1,4 +1,4 @@
-export default async function ({ store, redirect, app, route }) {
+export default async function({ store, redirect, app, route }) {
   const { classroom, user } = store.state.auth
 
   if (user.classroom && user.classroom !== route.params.classroom) {

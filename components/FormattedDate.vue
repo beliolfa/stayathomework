@@ -11,15 +11,15 @@ export default {
   props: {
     date: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   computed: {
     formattedDate() {
-        const formattedDate = format(parseISO(this.date), 'iiii, dd \'de\' MMMM \'de\' yyyy', { locale })
-        return  formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1)
-      }
-  }
+      const formattedDate = format(parseISO(this.date), "iiii, dd 'de' MMMM 'de' yyyy", { locale })
+      return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1)
+    },
+  },
 }
 </script>

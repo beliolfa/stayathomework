@@ -1,13 +1,7 @@
 <template>
   <div class="m-8">
-    <R64Input
-      v-model="form.name"
-      label="Nombre"
-    />
-    <R64Textarea
-      v-model="form.description"
-      label="Descripción"
-    />
+    <R64Input v-model="form.name" label="Nombre" />
+    <R64Textarea v-model="form.description" label="Descripción" />
     <div class="mt-8 border-t border-gray-200 pt-5">
       <div class="flex justify-end">
         <span class="inline-flex rounded-md shadow-sm">
@@ -34,42 +28,42 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
-  const emptySubject = {
-    name: '',
-    description: '',
-    svg: '',
-    slug: '',
-  }
-  export default {
-    name: 'SubjectForm',
+import { mapActions } from 'vuex'
+const emptySubject = {
+  name: '',
+  description: '',
+  svg: '',
+  slug: '',
+}
+export default {
+  name: 'SubjectForm',
 
-    props: {
-      subject: {
-        type: Object,
-        default: null
-      }
+  props: {
+    subject: {
+      type: Object,
+      default: null,
     },
+  },
 
-    data() {
-      return {
-        form: this.subject ? { ...this.subject } : emptySubject
-      }
-    },
-
-    methods: {
-      ...mapActions({
-        setSubject: 'classroom/setSubject'
-      }),
-
-      async submit() {
-        await this.setSubject(this.form)
-        this.close()
-      },
-
-      close() {
-        this.$modal.hide('subject-modal')
-      }
+  data() {
+    return {
+      form: this.subject ? { ...this.subject } : emptySubject,
     }
-  }
+  },
+
+  methods: {
+    ...mapActions({
+      setSubject: 'classroom/setSubject',
+    }),
+
+    async submit() {
+      await this.setSubject(this.form)
+      this.close()
+    },
+
+    close() {
+      this.$modal.hide('subject-modal')
+    },
+  },
+}
 </script>

@@ -8,7 +8,7 @@ export const I18N = {
     fallbackLocale: 'es',
     messages: {
       en,
-      es
-    }
-  }
+      es,
+    },
+  },
 }
