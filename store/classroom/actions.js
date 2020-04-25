@@ -25,6 +25,16 @@ export default {
       })
   },
 
+  getSubjects({ commit, rootState }) {
+    return this.$fireStore.collection('subjects').where('classroom', '==', rootState.auth.classroom).get()
+    .then(({ docs }) => {
+      commit('SET_SUBJECTS', docs.map(doc => ({ id: doc.id, ...doc.data() })))
+    })
+    .catch(error => {
+      console.log('Error getting subjects', error);
+    });
+  },
+
   async setSubject({ commit, rootState }, formData) {
     const { classroom } = rootState.auth
     const slug = formData.slug || slugify(formData.name)
@@ -63,19 +73,33 @@ export default {
   },
 
   getResources({ commit, rootState }) {
-    return this.$fireStore
-      .collection('resources')
-      .where('classroom', '==', rootState.auth.classroom)
-      .get()
-      .then(({ docs }) => {
-        commit(
-          'SET_RESOURCES',
-          docs.map(doc => ({ id: doc.id, ...doc.data() })),
-        )
-      })
-      .catch(error => {
-        console.log('Error getting resources', error)
-      })
+    return this.$fireStore.collection('resources').where('classroom', '==', rootState.auth.classroom).get()
+    .then(({ docs }) => {
+      commit('SET_RESOURCES', docs.map(doc => ({ id: doc.id, ...doc.data() })))
+    })
+    .catch(error => {
+      console.log('Error getting resources', error);
+    });
+  },
+
+  async setTask({ commit, rootState }, formData) {
+    const { classroom } = rootState.auth
+    const slug = slugify(formData.name)
+    const data = { ...formData, classroom, slug }
+
+    if (formData.id) {
+      await this.$fireStore.collection('tasks').doc(formData.id).set(data)
+    } else {
+      await this.$fireStore.collection('tasks').add(data)
+    }
+
+    commit('SET_TASK', data)
+
+  },
+
+  async deleteTask({ commit }, id) {
+    await this.$fireStore.collection('tasks').doc(id).delete()
+    commit('DELETE_TASK', id)
   },
 }
 
